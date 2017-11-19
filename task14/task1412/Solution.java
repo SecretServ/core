@@ -17,13 +17,14 @@ public class Solution {
     public static void printMainInfo(Object object) {
 
         if (object instanceof Drawable){
-
+            ((Drawable) object).draw();
+        } else if (object instanceof Movable ){
+            ((Movable) object).move();
         }
         //напишите тут ваш код
     }
 
     static interface Movable {
-
         void move();
     }
 
@@ -46,7 +47,6 @@ public class Solution {
         public void draw() {
             System.out.println("can be drawn");
         }
-
         public void move() {
             System.out.println("can be moved");
         }
