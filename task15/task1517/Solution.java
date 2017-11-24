@@ -9,13 +9,17 @@ public class Solution{
 
     static {
 
+    int [] arr = new int [10];
+    int f = arr[11];
+
+
 
         //throw an exception here - выбросьте эксепшн тут
     }
 
     public static int B = 5;
 
-    public static void main(String[] args) throws RuntimeException {
+    public static void main(String[] args) {
         System.out.println(B);
     }
 }
