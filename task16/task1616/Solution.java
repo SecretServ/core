@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 */
 
 public class Solution {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         InputStreamReader in = new InputStreamReader(System.in);
         BufferedReader reader = new BufferedReader(in);
         //create and run thread
@@ -23,15 +23,24 @@ public class Solution {
         in.close();
     }
 
-    public static class Stopwatch extends Thread {
+    public static class Stopwatch extends Thread  {
         private int seconds;
 
-        public void run() {
+        public void run(){
+
             try {
+
+                while(!Thread.currentThread().isInterrupted()) {
+                    Thread.sleep(1000);
+                    seconds++;
+                }
                 //add your code here - добавьте код тут
             } catch (InterruptedException e) {
+
+            } finally {
                 System.out.println(seconds);
             }
         }
+
     }
 }
