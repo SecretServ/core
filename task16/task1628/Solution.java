@@ -5,13 +5,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Solution {
     public static volatile AtomicInteger countReadStrings = new AtomicInteger(0);
     public static volatile BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         //read count of strings
         int count = Integer.parseInt(reader.readLine());
 
@@ -25,14 +26,15 @@ public class Solution {
         consolReader3.start();
 
         while (count > countReadStrings.get()) {
+
         }
 
-        consolReader1.interrupt();
-        consolReader2.interrupt();
-        consolReader3.interrupt();
-        System.out.println("#1:" + consolReader1);
-        System.out.println("#2:" + consolReader2);
-        System.out.println("#3:" + consolReader3);
+            consolReader1.interrupt();
+            consolReader2.interrupt();
+            consolReader3.interrupt();
+            System.out.println("#1:" + consolReader1);
+            System.out.println("#2:" + consolReader2);
+            System.out.println("#3:" + consolReader3);
 
         reader.close();
     }
@@ -41,17 +43,24 @@ public class Solution {
         private List<String> result = new ArrayList<String>();
 
         public void run() {
-            //int countReadStrings = 0;
+
             try {
                 while (!Thread.currentThread().isInterrupted()) {
-                    String str = reader.readLine();
-                    this.result.add(str);
-                    //System.out.println(str);
-                    Solution.countReadStrings.getAndIncrement();
-                }
+                    //if (reader.ready()) {
+                        String str = reader.readLine();
+                        System.out.println(str);
+                        this.result.add(str);
+                        //System.out.println(str);
+                        Solution.countReadStrings.getAndIncrement();
+                        TimeUnit.MILLISECONDS.sleep(100);
+                    }
+                //}
             } catch (IOException e) {
                 System.out.println("string from CATCH");
+            } catch (InterruptedException f) {
+                System.out.println("Interrupted");
             }
+
             //add your code here - добавьте код тут
         }
 
