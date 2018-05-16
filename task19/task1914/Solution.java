@@ -23,9 +23,8 @@ public class Solution {
         String result = outputStream.toString();
         System.setOut(consoleStream); //return original output stream
 
-        String regex1 = "\\d";
+        String regex1 = "\\d+";
         String regex2 = "[\\+\\-\\*]";
-        String sign = null;
         Pattern p1 = Pattern.compile(regex1);
         Pattern p2 = Pattern.compile(regex2);
         Matcher m1 = p1.matcher(result);
@@ -40,19 +39,23 @@ public class Solution {
         }
 
         int target = 0;
+        int first = Integer.parseInt(list.get(0));
+        int second = Integer.parseInt(list.get(1));
 
         switch (list.get(2)) {
-            case "+" : target = ////////// continue from here
+            case "+" : target = first + second;  break;
+            case "-" : target = first - second;  break;
+            case "*" : target = first * second;  break;
+            default:
+                System.out.println("Some error occured");
         }
-
-        int target = Integer.parseInt(list.get(0)) + Byte.parseByte(list.get(2)) + Integer.parseInt(list.get(1));
 
         System.out.println(list.get(0) + " " + list.get(2) + " " + list.get(1) + " = " + target);
     }
 
     public static class TestString {
         public void printSomething() {
-            System.out.println("3 * 6 = ");
+            System.out.println("3 + 6 = ");
         }
     }
 }
