@@ -36,13 +36,11 @@ public class Solution {
         }
 
         Collection<Double> values = map.values();
-        System.out.println(values);
         Double max = Collections.max(values);
-        System.out.println(max);
 
         Set<Map.Entry<String, Double>> pair = map.entrySet();
         for (Map.Entry<String, Double> entry : pair) {
-            if (entry.getValue() == max) {
+            if (entry.getValue().equals(max)) {
                 System.out.println(entry.getKey());
             }
         }
