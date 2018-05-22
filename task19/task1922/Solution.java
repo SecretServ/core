@@ -23,31 +23,23 @@ public class Solution {
         reader.close();
 
         BufferedReader fr = new BufferedReader(new FileReader(fileName));
-        String A = words.get(0);
-        String B = words.get(1);
-        String C = words.get(2);
+        int counter = 0;
+        int size = words.size();
 
         while (fr.ready()) {
             String str = fr.readLine();
-            //System.out.println(str);
-            /*if (((str.contains(words.get(0)) && str.contains(words.get(1))) ||
-                    ((str.contains(words.get(0)) && str.contains(words.get(2)))) ||
-                    ((str.contains(words.get(1)) && str.contains(words.get(2)))))) {
-                System.out.println(str);
-            }*/
 
-            if (str.contains(A) & str.contains(B) & !str.contains(C)) {
-                System.out.println(str);
-                str = fr.readLine();
-            } else if (str.contains(A) & str.contains(C) & !str.contains(B)) {
-                System.out.println(str);
-                str = fr.readLine();
-            } else if (str.contains(B) & str.contains(C) & !str.contains(A)) {
-                System.out.println(str);
-                str = fr.readLine();
+            for (int i = 0; i < size; i++) {
+                if (str.contains(words.get(i))) {
+                    counter++;
+                }
             }
 
+            if (counter == 2) {
+                System.out.println(str);
+            }
+            counter = 0;
         }
-
+        fr.close();
     }
 }
