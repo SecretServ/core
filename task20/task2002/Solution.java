@@ -49,6 +49,7 @@ public class Solution {
             javaRush.users.add(user);
             javaRush.users.add(user1);
             javaRush.users.add(user3);
+
             javaRush.save(outputStream);
             outputStream.flush();
 
